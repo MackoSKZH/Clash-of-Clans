@@ -6,8 +6,6 @@ import fri.shapesge.Manazer;
 import mapa.Mapa;
 import obraz.Obrazovka;
 
-//Reprezentuje nepriateľskú jednotku typu „Mag“.
-//Mag je útočník na diaľku – pohybuje sa k najbližšej budove, až kým nie je v dosahu, a potom po nej strieľa projektily.
 public class Mag implements Jednotka {
     private static final int POCET_KROKOV_PROJEKTILU = 10;
     private final Mapa mapa;
@@ -26,13 +24,6 @@ public class Mag implements Jednotka {
     private boolean jeZivy;
     private int zivoty;
 
-    //Inicializuje maga s danou pozíciou a napojením na mapu a správcu objektov.
-    //
-    //x, y – počiatočná pozícia na mape
-    //
-    //mapa – herná mapa
-    //
-    //manazer – správca objektov pre vykreslenie a tik
     public Mag(double x, double y, Mapa mapa, Manazer manazer) {
         this.x = x;
         this.y = y;
@@ -57,21 +48,16 @@ public class Mag implements Jednotka {
 
     }
 
-    //Určuje, že mag je nepriateľská jednotka.
-    //Používa sa pri identifikácii cieľov pre obranné veže.
     @Override
     public boolean jeNepriatel() {
         return true;
     }
 
-    //Zisťuje, či je mag stále nažive.
     @Override
     public boolean jeZivy() {
         return this.jeZivy;
     }
 
-    //Znižuje životy maga o danú hodnotu.
-    //Ak klesnú na 0 alebo menej, mag sa skryje a prestane vykonávať akcie.
     @Override
     public void zran(int zranenie) {
         if (!this.jeZivy) {
@@ -85,8 +71,6 @@ public class Mag implements Jednotka {
         }
     }
 
-    //Vracia aktuálnu X/Y pozíciu maga.
-    //Používa sa napríklad na výpočet vzdialenosti pre strely.
     @Override
     public double getX() {
         return this.x;
@@ -97,9 +81,6 @@ public class Mag implements Jednotka {
         return this.y;
     }
 
-
-    //Metóda volaná v každom hernom kroku.
-    //Ak mag ešte nie je v dosahu cieľovej budovy, posúva sa k nej. Ak je, strieľa po nej v stanovenom intervale.
     @Override
     public void tik() {
         if (!this.jeZivy) {

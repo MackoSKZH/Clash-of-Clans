@@ -8,8 +8,6 @@ import main.Segment;
 import mapa.Mapa;
 import obraz.Obrazovka;
 
-//Trieda reprezentujúca nepriateľskú jednotku – barbara.
-//Barbara možno považovať za "melee" jednotku, ktorá sa presúva k najbližšej budove a útočí na ňu opakovane, kým ju nezničí.
 public class Barbar implements Jednotka {
     private final Kruh kruh;
     private double x;
@@ -26,13 +24,6 @@ public class Barbar implements Jednotka {
     private final Mapa mapa;
     private main.Segment cielovySegment;
 
-    //Inicializuje barbara na daných súradniciach, nastavuje jeho cieľ (najbližšiu budovu) a vizualizáciu v prostredí fri.shapesge.
-    //
-    //startX, startY – počiatočná pozícia na mape
-    //
-    //mapa – referencia na mapu s budovami
-    //
-    //manazer – správca grafických objektov
     public Barbar(double startX, double startY, Mapa mapa, Manazer manazer) {
         this.mapa = mapa;
         this.x = startX;
@@ -70,15 +61,11 @@ public class Barbar implements Jednotka {
         manazer.spravujObjekt(this);
     }
 
-    //Vracia, či je jednotka nepriateľ.
-    //Používa sa napr. pre obranné veže (kanón), aby vedeli po kom útočiť.
     @Override
     public boolean jeNepriatel() {
         return true;
     }
 
-    //Metóda volaná v každom hernom kroku.
-    //Barbara sa buď presúva k cieľu, alebo ak ho už dosiahol, útočí každú sekundu na budovu, kým ju nezničí.
     @Override
     public void tik() {
         if (!this.zivy) {
@@ -149,7 +136,6 @@ public class Barbar implements Jednotka {
         this.kruh.posunZvisle((int)krokY);
     }
 
-    //Hladá nablizsi mozny segment, na ktory sa da zautocit
     private Segment najdiNajblizsiSegment() {
         Segment najblizsi = null;
         double najblizsiaVzdialenost = Double.MAX_VALUE;
@@ -178,8 +164,6 @@ public class Barbar implements Jednotka {
         return najblizsi;
     }
 
-    //Znižuje životy barbara.
-    //Ak dosiahnu nulu alebo menej, barbar sa označí za mŕtveho a jeho kruh sa skryje.
     @Override
     public void zran(int zranenie) {
         if (!this.zivy) {
@@ -193,14 +177,11 @@ public class Barbar implements Jednotka {
         }
     }
 
-    //Zisťuje, či je barbar stále nažive.
     @Override
     public boolean jeZivy() {
         return this.zivy;
     }
 
-    //Vracia aktuálne X/Y súradnice barbara.
-    //Používa sa napr. pre výpočet vzdialenosti pri útoku kanóna.
     @Override
     public double getX() {
         return this.x;
