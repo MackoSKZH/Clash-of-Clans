@@ -9,7 +9,6 @@ import postavy.Barbar;
 import postavy.Mag;
 import postavy.SpravcaJednotiek;
 
-//Trieda reprezentujúca hlavnú logiku hry – spravuje mapu, obrazovku, zlaté zdroje, jednotky a priebeh vĺn útoku.
 public class Hra {
     private final Mapa mapa;
     private final Obrazovka obraz;
@@ -22,7 +21,7 @@ public class Hra {
     private long poslednaVlna;
     private final long intervalVlny;
     private final int pocetNaVlnu;
-    //Konštruktor hry. Inicializuje mapu, obrazovku, správcu jednotiek, nastavuje zlatú kapacitu a spúšťa hlavný tickovací cyklus.
+
     public Hra(int pocetSegmentov) {
         this.mapa = new Mapa(this, pocetSegmentov);
         this.mapa.nastavSegmenty();
@@ -43,7 +42,7 @@ public class Hra {
 
         this.nastavKapacituZlata();
     }
-    //Metóda volaná v herných cykloch. Vykonáva logiku všetkých budov, jednotiek, zobrazenie stavu a generovanie nových jednotiek (vĺn barbarov a magov).
+
     public void tik() {
         for (int i = 0; i < this.mapa.getPocetSegmentov(); i++) {
             for (int j = 0; j < this.mapa.getPocetSegmentov(); j++) {
@@ -75,7 +74,7 @@ public class Hra {
             this.spravcaJednotiek.pridajJednotku(mag);
         }
     }
-    //Prepočíta maximálnu kapacitu zlata podľa úrovní radníc a zlatých dolov na mape.
+
     public void nastavKapacituZlata() {
         int kapacita = 0;
         for (int i = 0; i < this.mapa.getPocetSegmentov(); i++) {
@@ -92,28 +91,22 @@ public class Hra {
         this.maxZlato = kapacita;
     }
 
-    //Nastaví aktuálny stav zlata v hre na novú hodnotu.
     public void nastavZlato(int noveZlato) {
         this.zlato = noveZlato;
     }
 
-    //Vracia aktuálne množstvo zlata.
     public int getZlato() {
         return this.zlato;
     }
 
-    //Vracia maximálnu možnú kapacitu zlata.
     public int getMaxZlato() {
         return this.maxZlato;
     }
 
-    //Vracia inštanciu správcu všetkých jednotiek v hre.
     public SpravcaJednotiek getSpravcaJednotiek() {
         return this.spravcaJednotiek;
     }
 
-    //s pomocou AI
-    //Metóda vyberie náhodnú pozíciu na okrajoch mapy
     private double[] generujNahodnyOkrajovyBod() {
         int mapaSize = this.mapa.getPocetSegmentov();
         int maxPixel = mapaSize * 70;
@@ -144,7 +137,6 @@ public class Hra {
         return new double[]{x, y};
     }
 
-    //Vracia referenciu na objekt obrazovky používateľského rozhrania.
     public Obrazovka getObrazovka() {
         return this.obraz;
     }
