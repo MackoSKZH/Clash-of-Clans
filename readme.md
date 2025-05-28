@@ -1,4 +1,4 @@
-# Strategická hra: Clash of Clans
+# Strategická hra: Barbar Kingdoms
 
 Tento projekt predstavuje strategickú hru vytvorenú v 
 jazyku Java s využitím grafickej knižnice **ShapesGE**. 
