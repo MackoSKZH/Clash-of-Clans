@@ -5,18 +5,15 @@ import mapa.Mapa;
 import obraz.Obrazovka;
 import postavy.Jednotka;
 
-//Trieda Kanon reprezentuje špeciálnu budovu, kanón, ktorá počas každého herného kroku automaticky útočí na nepriateľské jednotky.
 public class Kanon extends Budovy {
     private long poslednyVystrel;
     private static final int COOLDOWN_MS = 500;
 
-    //Konštruktor vytvorí inštanciu kanónu s daným levelom a životmi. Zároveň nastaví počiatočný čas posledného výstrelu.
     public Kanon(int level, int zivoty) {
         super(TypBudovy.KANON, level, zivoty);
         this.poslednyVystrel = 0;
     }
 
-    //Metóda sa volá počas každého herného „ticku“. Ak uplynul čas od posledného výstrelu, vyhľadá prvú živú jednotku, vystrelí na ňu (zníži jej životy) a spustí animáciu strely smerom k jej aktuálnej polohe.
     @Override
     public void vykonajKrok(Mapa mapa, int x, int y) {
         long teraz = System.currentTimeMillis();

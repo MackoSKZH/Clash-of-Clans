@@ -1,6 +1,5 @@
 package budovy;
 
-//Enum, ktorý reprezentuje rôzne druhy budov dostupné v hre, ako RADNICA, KANON, ZLATYDOL a DOM_STAVITELA. Každý typ má preddefinovaný obrázok, počet životov, počiatočný level a cenu.
 public enum TypBudovy {
     RADNICA("RADNICA1.png", 500, 1, 1500),
     KANON("KANON1.png", 50, 1, 400),
