@@ -1,11 +1,10 @@
 package obraz;
-//Inšpiované Zemeplocha
+
 import fri.shapesge.BlokTextu;
 import fri.shapesge.Obdlznik;
 import fri.shapesge.Obrazok;
 import fri.shapesge.StylFontu;
 
-//Grafická reprezentácia jedného segmentu (políčka) na hernej mape. Obsahuje pozíciu, farbu, text, rám a obrázok.
 public class HernePole {
     private Obrazok obrazok;
     private final Obdlznik bg;
@@ -19,11 +18,6 @@ public class HernePole {
     private String farba;
     private boolean jeZvyraznene;
 
-    //Konštruktor vytvárajúci nové herné pole na zadaných súradniciach s danou veľkosťou.
-    //
-    //x, y – pozícia ľavého horného rohu políčka
-    //
-    //velkost – dĺžka strany štvorcového políčka
     public HernePole(int x, int y, int velkost) {
         this.x = x;
         this.y = y;
@@ -43,7 +37,6 @@ public class HernePole {
         this.bg.zobraz();
     }
 
-    //Zmení farbu pozadia herného poľa. Ak pole nie je zvýraznené, zmení aj farbu rámu
     public void zmenFarbu(String farba) {
         this.farba = farba;
         this.bg.zmenFarbu(this.farba);
@@ -64,7 +57,6 @@ public class HernePole {
         }
     }
 
-    //Nastaví text zobrazený v políčku. Dlhý text sa rozdelí na viac riadkov.
     public void nastavText(String text) {
         if (text == null) {
             text = "";
@@ -81,12 +73,10 @@ public class HernePole {
         this.text.zmenFont("Consolas", StylFontu.BOLD, 10);
     }
 
-    //Zistí, či zadané súradnice (napr. myši) spadajú do tohto herného poľa.
     public boolean obsahujeSuranicu(int x, int y) {
         return x >= this.x && x <= this.x + this.velkost && y >= this.y && y <= this.y + this.velkost;
     }
 
-    //Zvýrazní alebo odznačí políčko, zmenou farby rámu.
     public void zvyrazniSegment(boolean zvyraznenie) {
         this.jeZvyraznene = zvyraznenie;
         if (this.jeZvyraznene) {

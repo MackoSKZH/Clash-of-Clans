@@ -1,6 +1,5 @@
 package obraz;
 
-//Inšpirované Zemeplocha
 import akcie.Akcia;
 import fri.shapesge.StylFontu;
 import fri.shapesge.Obdlznik;
@@ -10,7 +9,7 @@ import mapa.Mapa;
 
 public class Tlacidlo {
     private int sirkaTlacidla;
-    //Konštanta určujúca výšku tlačidla (v pixeloch). Používa sa na výpočet rozmerov grafických komponentov tlačidla.
+
     public static final int VYSKA_TLACIDLA = 19;
     private final int x;
     private final int y;
@@ -45,19 +44,16 @@ public class Tlacidlo {
         this.text.zobraz();
     }
 
-    //Skryje všetky grafické prvky tlačidla (pozadie, rám, text).
     public void skry() {
         this.ram.skry();
         this.bg.skry();
         this.text.skry();
     }
 
-    //Obnoví farbu textu tlačidla na predvolenú čiernu (indikácia neaktívneho stavu).
     public void zrusZvyraznenie() {
         this.text.zmenFarbu("black");
     }
 
-    //Zmení farbu textu tlačidla na červenú, čím vizuálne zvýrazní tlačidlo pod kurzorom.
     public void zvyrazni() {
         this.text.zmenFarbu("#e74c3c");
     }
@@ -67,9 +63,6 @@ public class Tlacidlo {
                 y >= this.y && y <= this.y + VYSKA_TLACIDLA;
     }
 
-    //Spustí akciu priradenú tomuto tlačidlu, ktorá upravuje stav mapy.
-    //
-    //mapa – aktuálna mapa hry, nad ktorou sa akcia vykonáva
     public void vykonaj(Mapa mapa) {
         this.akcia.vykonaj(mapa);
     }

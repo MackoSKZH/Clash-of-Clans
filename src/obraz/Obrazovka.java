@@ -1,6 +1,5 @@
 package obraz;
 
-//Inšpirované Zemeplocha
 import akcie.Akcia;
 import fri.shapesge.BlokTextu;
 import fri.shapesge.Manazer;
@@ -11,9 +10,8 @@ import main.Hra;
 
 import java.util.ArrayList;
 
-//Zodpovedá za vizuálne vykreslenie a interakciu herného poľa a UI prvkov (akcií, výber segmentov).
 public class Obrazovka {
-    //Konštanta určujúca veľkosť jedného segmentu v pixeloch.
+
     public static final int ROZMER_SEGMENTU = 70;
 
     private final HernePole[][] herneSegmenty;
@@ -28,11 +26,6 @@ public class Obrazovka {
 
     private ArrayList<Tlacidlo> akcie;
 
-    //Konštruktor vytvárajúci hernú obrazovku vrátane mriežky políčok, textových a grafických prvkov.
-    //
-    //mapa – referenčná mapa hry
-    //
-    //hra – samotná hra (logika)
     public Obrazovka(Mapa mapa, Hra hra) {
         this.mapa = mapa;
         this.hra = hra;
@@ -53,7 +46,6 @@ public class Obrazovka {
         this.manazer.spravujObjekt(this);
     }
 
-    //Aktualizuje grafické zobrazenie všetkých segmentov vrátane ich obrázkov a textov.
     public void zobraz() {
         for (int i = 0; i < this.herneSegmenty.length; i++) {
             for (int j = 0; j < this.herneSegmenty[i].length; j++) {
@@ -68,9 +60,6 @@ public class Obrazovka {
         }
     }
 
-    //Spracuje kliknutie na súradnice – vyberie segment alebo vykoná príslušnú akciu.
-    //
-    //x, y – súradnice kliknutia
     public void vyberSuradnice(int x, int y) {
         for (Tlacidlo akcia : this.akcie) {
             if (akcia.obsahujeSuradnicu(x, y)) {
@@ -101,8 +90,6 @@ public class Obrazovka {
         this.skryAkcie();
     }
 
-
-    //Otvorí menu akcií (tlačidiel) na základe výberu druhého segmentu.
     public void otvorAkcie(int x, int y) {
         this.skryAkcie();
         if (this.zvolenyHernySegment == null) {
@@ -122,7 +109,6 @@ public class Obrazovka {
         }
     }
 
-    //Reaguje na pohyb myši nad akciami (zvýraznenie aktívneho tlačidla).
     public void mouseMove(int x, int y) {
         for (Tlacidlo tlacidlo : this.akcie) {
             tlacidlo.zrusZvyraznenie();
@@ -132,7 +118,6 @@ public class Obrazovka {
         }
     }
 
-    //Skryje a odstráni všetky aktuálne zobrazené tlačidlá akcií.
     public void skryAkcie() {
         for (Tlacidlo tlacidlo : this.akcie) {
             tlacidlo.skry();
@@ -140,9 +125,6 @@ public class Obrazovka {
         this.akcie.clear();
     }
 
-    //Vráti grafické herné pole na daných súradniciach v mriežke.
-    //
-    //i, j – riadok a stĺpec segmentu
     public HernePole getHernePole(int i, int j) {
         return this.herneSegmenty[i][j];
     }
